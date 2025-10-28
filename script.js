@@ -3,6 +3,7 @@ document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
 
+    
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
         themeIcon.src = "Vector (2).svg";
