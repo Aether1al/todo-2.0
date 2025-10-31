@@ -18,16 +18,24 @@
         <div id="todoH1">TODO LIST</div>
         <form>
             <input type="text" id="poisk" placeholder="Search note...">
-            <button id="confirm" type="button"><img src="Vector.svg" alt=""></button>
-            <select name="" id="">
-                <option>ALL</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
+            
+            <button id="confirm" type="button"><img src="photos/Vector.svg" alt=""></button>
+            <div class="dropdown" id="filterDropdown">
+                <button class="btn" id="filterBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    ALL
+                    <img class="chev" src="photos/chevron-top (1).png" alt="">
+                </button>
+            <ul class="menu" role="listbox" aria-label="Filter">
+                <li role="option" data-value="all">All</li>
+                <li role="option" data-value="active">Complete</li>
+                <li role="option" data-value="copleted">Incomplete</li>
+            </ul>
+            </div>
+            
             <div id="night">
-                <!-- <button type="button" id="nightbtn" onclick="nightMode()"><img src="Vector (1).svg" alt=""></button> -->
+                <!-- <button type="button" id="nightbtn" onclick="nightMode()"><img src="photos/Vector (1).svg" alt=""></button> -->
 
-                <button type="button" id="nightbtn"><img id="theme-icon" src="Vector (1).svg"></button>
+                <button type="button" id="nightbtn"><img id="theme-icon" src="photos/Vector (1).svg"></button>
 
             </div>
         </form>
@@ -99,11 +107,11 @@
             </div>
             </div>
             <div id="emptyState" class="hidden">
-                <img src="Detective-check-footprint 1.png" alt="">
+                <img src="photos/Detective-check-footprint 1.png" alt="">
                 <p>Empty...</p>
             </div>
         </form>
-        <button class="PlusWin" onclick="openPopup()"><img src="Vector (4).png" alt=""></button>
+        <button class="PlusWin" onclick="openPopup()"><img src="photos/Vector (4).png" alt=""></button>
         <div class="popup">
             <div id="divnote">
                 <p class="newnote">NEW NOTE</p>

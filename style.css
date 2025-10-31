@@ -122,24 +122,65 @@ form {
     right: 40px;
 }
 
-select {
-    width: 75px;
-    height: 38px;
-    padding: 0px 5px 0px 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #6C63FF;
-    color: white;
-    font-family: "Kanit", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 18px;
-    justify-content: space-evenly;
-    display: flex;
-    cursor: pointer;
+.chev{
+    width: 10px;
+    height: 7px;
+
 }
 
+.btn{
+    width: 85px;
+    height: 38px;
+    background-color:#6C63FF;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 18px;
+    border-radius: 5px;
+}
 
+.dropdown{
+    position: relative;
+}
+
+.menu{
+    position: absolute;
+    top: calc(100%+5px);
+    right: 0;
+    width: 160px;
+    background: white;
+    border: 2px solid #4d47b9;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+}
+
+.dropdown.open .menu{
+    display: block;
+}
+
+.menu li{
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: "Kanit", sans-serif;
+    color: #4d47b9;
+}
+
+li{
+    list-style: none;
+}
+
+.menu li:hover{
+    background-color:#6b63ff6d;
+}
+
+.menu li[aria-selected="true"] {
+    background: rgb(219, 219, 219);
+    color: #4d47b9;
+}
 
 #night {
     display: flex;
@@ -187,6 +228,8 @@ body.light-theme {
 
 }
 
+
+
 body.dark-theme,
 .dark-theme .popup {
     background-color: rgb(49, 49, 49);
@@ -231,6 +274,7 @@ hr {
 
 .checknote:checked+.note {
     text-decoration: line-through;
+    text-decoration-thickness: 2px;
 }
 
 
@@ -298,6 +342,14 @@ hr.hidden {
     position: relative;
     left: 5%;
     top: 7%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.CloseWin:hover{
+    background-color: #4d47b9;
+    color: white;
+    transform: scale(0.95);
 }
 
 .Apply {
@@ -312,7 +364,13 @@ hr.hidden {
     top: 7%;
     position: relative;
     left: 50%;
+    transition: all 0.3s;
+    cursor: pointer;
+}
 
+.Apply:hover{
+    background-color: #4d47b9;
+    transform: scale(0.95);
 }
 
 .PlusWin {

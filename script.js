@@ -7,11 +7,9 @@ document.getElementById('nightbtn').addEventListener('click', function () {
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
         themeIcon.src = "Vector (2).svg";
-        console.log("Switched to dark theme");
     } else {
         document.body.className = 'light-theme';
         themeIcon.src = "Vector (1).svg";
-        console.log("Switched to light theme");
     }
 });
 
@@ -196,3 +194,15 @@ document.getElementById('inpt').addEventListener('keypress', function (e) {
         addNewNote();
     }
 });
+
+
+// выпадающий список
+const filterBtn = document.getElementById('filterBtn');
+const dropdown = document.getElementById('filterDropdown');
+const menu = dropdown.querySelector(".menu");
+const items = menu.querySelectorAll("li");
+
+filterBtn.onclick = function () {
+    dropdown.classList.toggle("open");
+};
+
