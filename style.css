@@ -52,18 +52,18 @@ form {
     cursor: pointer;
     width: 20px;
     height: 20px;
-    background-image: url("Vector\ \(6\).png");
+    background-image: url("photos//Vector\ \(6\).png");
     background-repeat: no-repeat;
     transition: all 0.3s;
 }
 
 .editor:hover {
-    background-image: url("Vector\ \(5\).png");
+    background-image: url("photos/Vector\ \(5\).png");
     background-repeat: no-repeat;
 }
 
 .editor:after {
-    background-image: url("Vector\ \(6\).png");
+    background-image: url("photos/Vector\ \(6\).png");
     background-repeat: no-repeat;
 }
 
@@ -72,18 +72,18 @@ form {
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
-    background-image: url("trash-svgrepo-com\ 1\ \(1\).png");
+    background-image: url("photos/trash-svgrepo-com\ 1\ \(1\).png");
     transition: all 0.3s;
 }
 
 .Trash:hover {
 
-    background-image: url("trash-svgrepo-com\ 1.png");
+    background-image: url("photos/trash-svgrepo-com\ 1.png");
     background-repeat: no-repeat;
 }
 
 .Trash:after {
-    background-image: url("trash-svgrepo-com\ 1\ \(1\).png");
+    background-image: url("photos/trash-svgrepo-com\ 1\ \(1\).png");
     background-repeat: no-repeat;
 }
 
@@ -129,7 +129,10 @@ form {
 }
 
 .btn{
-    width: 85px;
+    max-width: 150px;
+    min-width: 20px;
+    width: auto;
+    padding: 0 10px 0px 10px;
     height: 38px;
     background-color:#6C63FF;
     color: white;
@@ -381,7 +384,8 @@ hr.hidden {
     height: 50px;
     border-radius: 50%;
     box-shadow: none;
-    position: relative;
+    position: absolute;
+    top: 90%;
     left: 72%;
     display: flex;
     align-items: center;

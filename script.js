@@ -3,13 +3,13 @@ document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
 
-    
+
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
-        themeIcon.src = "Vector (2).svg";
+        themeIcon.src = "photos/Vector (2).svg";
     } else {
         document.body.className = 'light-theme';
-        themeIcon.src = "Vector (1).svg";
+        themeIcon.src = "photos/Vector (1).svg";
     }
 });
 
@@ -60,6 +60,7 @@ function openPopup() {
     let popup = document.querySelector('.popup');
     let overflow = document.querySelector('.overflow');
     popup.style.display = 'block';
+    document.getElementById("inpt").focus();
     overflow.style.display = 'block';
 }
 
@@ -205,4 +206,78 @@ const items = menu.querySelectorAll("li");
 filterBtn.onclick = function () {
     dropdown.classList.toggle("open");
 };
+items.forEach(item => {
+    item.addEventListener('click', function () {
+        dropdown.classList.remove("open");
+
+    });
+});
+
+
+const changeValueBtn = document.getElementById("filterBtn");
+const all = document.querySelectorAll('.menu>li');
+const checkbox = document.querySelectorAll('.checknote');
+// const listElements = Array.from(document.querySelectorAll(".note"));
+
+all.forEach(li => {
+    li.addEventListener("click", () => {
+        changeValueBtn.innerHTML = li.innerHTML;
+
+        if (changeValueBtn.textContent == "Complete") {
+            checkbox.forEach(elem => {
+                const trashItem = elem.closest('.trashies');
+                trashItem.style.display = "flex";
+                console.log(elem);
+                if (elem.checked !== true) {
+                    trashItem.style.display = "none";
+                    const nextElement = trashItem.nextElementSibling;
+                    if (nextElement && nextElement.tagName === 'HR') {
+                        nextElement.style.display = "none";
+                    }
+                } else {
+                    trashItem.style.display = "flex";
+                    const nextElement = trashItem.nextElementSibling;
+                    if (nextElement && nextElement.tagName === 'HR') {
+                        nextElement.style.display = "flex";
+                    }
+                }
+            });
+        }
+
+        if (changeValueBtn.textContent == "Incomplete") {
+            checkbox.forEach(elem => {
+                console.log(elem);
+                const trashItem = elem.closest('.trashies');
+                trashItem.style.display = "flex";
+
+                if (elem.checked !== false) {
+                    trashItem.style.display = "none";
+                    const nextElement = trashItem.nextElementSibling;
+                    if (nextElement && nextElement.tagName === 'HR') {
+                        nextElement.style.display = "none";
+                    }
+                } 
+                else {
+                    trashItem.style.display = "flex";
+                    const nextElement = trashItem.nextElementSibling;
+                    if (nextElement && nextElement.tagName === 'HR') {
+                        nextElement.style.display = "flex";
+                    }
+                }
+            });
+        }
+
+        if (changeValueBtn.textContent == "All") {
+            checkbox.forEach(elem => {
+                const trashItem = elem.closest('.trashies');
+                trashItem.style.display = "flex";
+                const nextElement = trashItem.nextElementSibling;
+                if (nextElement && nextElement.tagName === 'HR') {
+                    nextElement.style.display = "flex";
+                }
+            });
+        }
+    });
+});
+
 
