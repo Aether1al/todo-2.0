@@ -3,7 +3,6 @@ document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
 
-
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
         themeIcon.src = "photos/Vector (2).svg";
@@ -23,9 +22,7 @@ function searchNotes() {
         const text = task.querySelector('.note').textContent.toLowerCase();
         const isVisible = text.includes(search);
 
-
         task.style.display = isVisible ? 'flex' : 'none';
-
 
         const nextHr = task.nextElementSibling;
         if (nextHr && nextHr.tagName === 'HR') {
@@ -123,19 +120,15 @@ function EmptyState() {
         return;
     }
 
-    // Если нет задач, показываем "empty..."
-    if (allTasks.length === 0) {
+    // Проверяем, есть ли видимые задачи (не скрытые)
+    const visibleTasks = Array.from(allTasks).filter(task => 
+        task.style.display !== 'none'
+    );
+    
+    if (visibleTasks.length === 0) {
         emptyState.classList.remove('hidden');
     } else {
-        // Проверяем, есть ли видимые задачи
-        const visibleTasks = Array.from(allTasks).filter(task =>
-            task.style.display !== 'none'
-        );
-        if (visibleTasks.length === 0) {
-            emptyState.classList.remove('hidden');
-        } else {
-            emptyState.classList.add('hidden');
-        }
+        emptyState.classList.add('hidden');
     }
 }
 
@@ -155,38 +148,26 @@ function addEventListenersToNewNote(noteElement) {
     //для корзины
     const trashBtn = noteElement.querySelector('.Trash');
     trashBtn.addEventListener('click', function () {
-        timerUndo();
-        const nextHr = noteElement.nextElementSibling;
-
-        if (nextHr && nextHr.tagName === 'HR') {
-            nextHr.remove();
-        }
-        noteElement.remove();
-        EmptyState();
+        const trashies = this.closest('.trashies');
+        const nextHr = trashies.nextElementSibling;
+        timerUndo(trashies, nextHr);
     });
-
 
     //для редактирования
     const editorBtn = noteElement.querySelector('.editor');
     editorBtn.addEventListener('click', function () {
-
+        // Код для редактирования можно добавить здесь
     });
 }
 
-
-// Для кнопок удаления
+// Для кнопок удаления (существующих задач при загрузке)
 document.querySelectorAll('.Trash').forEach(trashBtn => {
     trashBtn.addEventListener('click', function () {
         const trashies = this.closest('.trashies');
         const nextHr = trashies.nextElementSibling;
-        if (nextHr && nextHr.tagName === 'HR') {
-            nextHr.remove();
-        }
-        trashies.remove();
-        EmptyState();
-    }); 
+        timerUndo(trashies, nextHr);
+    });
 });
-
 
 document.querySelector('.Apply').addEventListener('click', addNewNote);
 
@@ -197,7 +178,6 @@ document.getElementById('inpt').addEventListener('keypress', function (e) {
         addNewNote();
     }
 });
-
 
 // выпадающий список
 const filterBtn = document.getElementById('filterBtn');
@@ -211,15 +191,12 @@ filterBtn.onclick = function () {
 items.forEach(item => {
     item.addEventListener('click', function () {
         dropdown.classList.remove("open");
-
     });
 });
-
 
 const changeValueBtn = document.getElementById("filterBtn");
 const all = document.querySelectorAll('.menu>li');
 const checkbox = document.querySelectorAll('.checknote');
-
 
 all.forEach(li => {
     li.addEventListener("click", () => {
@@ -249,19 +226,68 @@ function filter() {
     })
 }
 
-function timerUndo() {
+// Функция для плашки undo
+function timerUndo(taskElement, hrElement) {
+    // Сохраняем задачу и hr для возможного восстановления
+    const taskClone = taskElement.cloneNode(true);
+    const hrClone = hrElement ? hrElement.cloneNode(true) : null;
+    
+    // Скрываем оригинальные элементы
+    taskElement.style.display = 'none';
+    if (hrElement) hrElement.style.display = 'none';
+    
+    // Создаем плашку undo и размещаем ее ПЕРЕД скрытой задачей
+    const undoBar = document.createElement('div');
+    undoBar.className = 'div-undo';
+    undoBar.innerHTML = `
+        <div class="loader-div">
+            <div class="loader"></div>
+            <p class="timer">2</p>
+        </div>
+        <div>
+            <p>UNDO <img src="photos/Vector (3).svg"></p>
+        </div>
+    `;
+    
+    // Вставляем плашку перед скрытой задачей
+    taskElement.parentNode.insertBefore(undoBar, taskElement);
+    
     let i = 2;
-    document.querySelector('.timer').textContent = i;
-    document.querySelector('.div-undo').style.display = 'flex';
-    document.querySelector('.loader').style.animation = 'l1 2s infinite linear';
-    const timer = setInterval(() => {
+    const timerElement = undoBar.querySelector('.timer');
+    
+    // Запускаем анимацию
+    undoBar.querySelector('.loader').style.animation = 'l1 2s infinite linear';
+    
+    const undoTimeout = setInterval(() => {
         i--;
-        document.querySelector('.timer').textContent = i;
+        timerElement.textContent = i;
 
         if (i <= -1) {
-            document.querySelector('.loader').style.animation = 'none';
-            document.querySelector('.div-undo').style.display = 'none';
-            clearInterval(timer);
+
+            clearInterval(undoTimeout);
+            if (taskElement.parentNode) {
+                taskElement.remove();
+                if (hrElement && hrElement.parentNode) {
+                    hrElement.remove();
+                }
+            }
+            undoBar.remove();
+            EmptyState();
         }
     }, 650);
+    
+    // Добавляем обработчик для восстановления
+    undoBar.addEventListener('click', function() {
+        clearInterval(undoTimeout);
+
+        taskElement.style.display = 'flex';
+        if (hrElement) hrElement.style.display = 'block';
+
+        undoBar.remove();
+        EmptyState();
+    });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    EmptyState();
+});
