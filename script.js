@@ -2,13 +2,16 @@
 document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
+     const emptyStateImg = document.getElementById('empty-state-img');
 
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
         themeIcon.src = "photos/Vector (2).svg";
+        emptyStateImg.src = emptyStateImg.getAttribute('data-dark');
     } else {
         document.body.className = 'light-theme';
         themeIcon.src = "photos/Vector (1).svg";
+        emptyStateImg.src = emptyStateImg.getAttribute('data-light');
     }
 });
 
@@ -120,7 +123,7 @@ function EmptyState() {
         return;
     }
 
-    // Проверяем, есть ли видимые задачи (не скрытые)
+    // Проверяем, есть ли видимые задачи
     const visibleTasks = Array.from(allTasks).filter(task => 
         task.style.display !== 'none'
     );
@@ -188,6 +191,13 @@ const items = menu.querySelectorAll("li");
 filterBtn.onclick = function () {
     dropdown.classList.toggle("open");
 };
+
+document.addEventListener('click', function(event) {
+    if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+    }
+});
+
 items.forEach(item => {
     item.addEventListener('click', function () {
         dropdown.classList.remove("open");
@@ -291,3 +301,4 @@ function timerUndo(taskElement, hrElement) {
 document.addEventListener('DOMContentLoaded', function() {
     EmptyState();
 });
+

@@ -116,19 +116,24 @@ form {
     right: 40px;
 }
 
-.chev{
+.chev {
+    margin-left: 10px;
     width: 10px;
-    height: 7px;
-
+    height: 30px;
+    transition: all 0.3s;
 }
 
-.btn{
+.dropdown.open .chev {
+    transform: rotate(180deg);
+}
+
+.btn {
     max-width: 150px;
     min-width: 20px;
     width: auto;
     padding: 0 10px 0px 10px;
     height: 38px;
-    background-color:#6C63FF;
+    background-color: #6C63FF;
     color: white;
     border: none;
     display: flex;
@@ -138,11 +143,11 @@ form {
     border-radius: 5px;
 }
 
-.dropdown{
+.dropdown {
     position: relative;
 }
 
-.menu{
+.menu {
     position: absolute;
     top: calc(100%+5px);
     right: 0;
@@ -154,11 +159,11 @@ form {
     z-index: 100;
 }
 
-.dropdown.open .menu{
+.dropdown.open .menu {
     display: block;
 }
 
-.menu li{
+.menu li {
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
@@ -166,12 +171,12 @@ form {
     color: #4d47b9;
 }
 
-li{
+li {
     list-style: none;
 }
 
-.menu li:hover{
-    background-color:#6b63ff6d;
+.menu li:hover {
+    background-color: #6b63ff6d;
 }
 
 .menu li[aria-selected="true"] {
@@ -262,7 +267,7 @@ hr {
     border-radius: 2px;
     width: 26px;
     height: 26px;
-    font-weight: 500;
+    font-weight: medium;
     font-size: 20px;
     line-height: 100%;
     text-transform: uppercase;
@@ -272,17 +277,16 @@ hr {
 .checknote:checked+.note {
     text-decoration: line-through;
     text-decoration-thickness: 2px;
+    color: #878787 !important;
 }
 
 
 .note {
-    font-weight: bold;
+    font-weight: Medium;
     font-size: 15px;
     line-height: 100%;
     text-transform: uppercase;
     font-family: "Kanit", sans-serif;
-
-
 }
 
 .checkboxes {
@@ -343,7 +347,7 @@ hr.hidden {
     transition: all 0.3s;
 }
 
-.CloseWin:hover{
+.CloseWin:hover {
     background-color: #4d47b9;
     color: white;
     transform: scale(0.95);
@@ -365,7 +369,7 @@ hr.hidden {
     cursor: pointer;
 }
 
-.Apply:hover{
+.Apply:hover {
     background-color: #4d47b9;
     transform: scale(0.95);
 }
@@ -465,6 +469,7 @@ hr.hidden {
     position: relative;
     min-height: 50px;
 }
+
 .loader {
     width: 30px;
     height: 30px;
@@ -491,9 +496,23 @@ hr.hidden {
 
 
 @keyframes l1 {
-    100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
-    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
-    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
-    0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
 }
