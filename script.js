@@ -155,7 +155,9 @@ function addEventListenersToNewNote(noteElement) {
     //для корзины
     const trashBtn = noteElement.querySelector('.Trash');
     trashBtn.addEventListener('click', function () {
+        timerUndo();
         const nextHr = noteElement.nextElementSibling;
+
         if (nextHr && nextHr.tagName === 'HR') {
             nextHr.remove();
         }
@@ -163,11 +165,11 @@ function addEventListenersToNewNote(noteElement) {
         EmptyState();
     });
 
+
     //для редактирования
     const editorBtn = noteElement.querySelector('.editor');
     editorBtn.addEventListener('click', function () {
 
-        alert('Ну тоже не наглей да');
     });
 }
 
@@ -182,7 +184,7 @@ document.querySelectorAll('.Trash').forEach(trashBtn => {
         }
         trashies.remove();
         EmptyState();
-    });
+    }); 
 });
 
 
@@ -217,67 +219,49 @@ items.forEach(item => {
 const changeValueBtn = document.getElementById("filterBtn");
 const all = document.querySelectorAll('.menu>li');
 const checkbox = document.querySelectorAll('.checknote');
-// const listElements = Array.from(document.querySelectorAll(".note"));
+
 
 all.forEach(li => {
     li.addEventListener("click", () => {
         changeValueBtn.innerHTML = li.innerHTML;
-
-        if (changeValueBtn.textContent == "Complete") {
-            checkbox.forEach(elem => {
-                const trashItem = elem.closest('.trashies');
-                trashItem.style.display = "flex";
-                console.log(elem);
-                if (elem.checked !== true) {
-                    trashItem.style.display = "none";
-                    const nextElement = trashItem.nextElementSibling;
-                    if (nextElement && nextElement.tagName === 'HR') {
-                        nextElement.style.display = "none";
-                    }
-                } else {
-                    trashItem.style.display = "flex";
-                    const nextElement = trashItem.nextElementSibling;
-                    if (nextElement && nextElement.tagName === 'HR') {
-                        nextElement.style.display = "flex";
-                    }
-                }
-            });
-        }
-
-        if (changeValueBtn.textContent == "Incomplete") {
-            checkbox.forEach(elem => {
-                console.log(elem);
-                const trashItem = elem.closest('.trashies');
-                trashItem.style.display = "flex";
-
-                if (elem.checked !== false) {
-                    trashItem.style.display = "none";
-                    const nextElement = trashItem.nextElementSibling;
-                    if (nextElement && nextElement.tagName === 'HR') {
-                        nextElement.style.display = "none";
-                    }
-                } 
-                else {
-                    trashItem.style.display = "flex";
-                    const nextElement = trashItem.nextElementSibling;
-                    if (nextElement && nextElement.tagName === 'HR') {
-                        nextElement.style.display = "flex";
-                    }
-                }
-            });
-        }
-
-        if (changeValueBtn.textContent == "All") {
-            checkbox.forEach(elem => {
-                const trashItem = elem.closest('.trashies');
-                trashItem.style.display = "flex";
-                const nextElement = trashItem.nextElementSibling;
-                if (nextElement && nextElement.tagName === 'HR') {
-                    nextElement.style.display = "flex";
-                }
-            });
-        }
+        filter()
     });
 });
 
+function filter() {
+    let note = document.querySelectorAll(".trashies");
+    note.forEach(elem => {
+        elem.style.display = "none"
+        let hr = elem.nextElementSibling;
+        hr.style.display = "none";
+        if (elem.querySelector(".checknote").checked && changeValueBtn.innerText == "Complete") {
+            elem.style.display = "flex";
+            hr.style.display = "flex";
+        }
+        if (!elem.querySelector(".checknote").checked && changeValueBtn.innerText == "Incomplete") {
+            elem.style.display = "flex";
+            hr.style.display = "flex";
+        }
+        if (changeValueBtn.innerText == "All") {
+            elem.style.display = "flex";
+            hr.style.display = "flex";
+        }
+    })
+}
 
+function timerUndo() {
+    let i = 2;
+    document.querySelector('.timer').textContent = i;
+    document.querySelector('.div-undo').style.display = 'flex';
+    document.querySelector('.loader').style.animation = 'l1 2s infinite linear';
+    const timer = setInterval(() => {
+        i--;
+        document.querySelector('.timer').textContent = i;
+
+        if (i <= -1) {
+            document.querySelector('.loader').style.animation = 'none';
+            document.querySelector('.div-undo').style.display = 'none';
+            clearInterval(timer);
+        }
+    }, 650);
+}

@@ -442,3 +442,49 @@ hr.hidden {
 #inpt:focus {
     outline: none;
 }
+
+.div-undo {
+    width: 120px;
+    height: 40px;
+    background-color: #534CC2;
+    border: solid 2px #6C63FF;
+    border-radius: 4px;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    transition: 0.5s;
+    cursor: pointer;
+    position: absolute;
+    top: 70%;
+}
+.div-undo:hover {
+    background-color: #6C63FF;
+    box-shadow: 0 0 4px 0 #6C63FF;
+}
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    border: 2px solid #ffffff;
+    animation: l1 2s infinite linear;
+    transform: rotate(-45deg) scaleX(-1);
+    position: absolute;
+}
+.loader-div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-undo p {
+    color: white;
+}
+@keyframes l1 {
+    100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
+    0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+}

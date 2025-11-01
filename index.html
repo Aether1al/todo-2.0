@@ -18,20 +18,20 @@
         <div id="todoH1">TODO LIST</div>
         <form>
             <input type="text" id="poisk" placeholder="Search note...">
-            
+
             <button id="confirm" type="button"><img src="photos/Vector.svg" alt=""></button>
             <div class="dropdown" id="filterDropdown">
                 <button class="btn" id="filterBtn" type="button">
                     ALL
                     <img class="chev" src="photos/chevron-top (1).png" alt="">
                 </button>
-            <ul class="menu" role="listbox" aria-label="Filter">
-                <li data-value="all">All</li>
-                <li data-value="active">Complete</li>
-                <li data-value="copleted">Incomplete</li>
-            </ul>
+                <ul class="menu" role="listbox" aria-label="Filter">
+                    <li data-value="all">All</li>
+                    <li data-value="active">Complete</li>
+                    <li data-value="copleted">Incomplete</li>
+                </ul>
             </div>
-            
+
             <div id="night">
                 <button type="button" id="nightbtn"><img id="theme-icon" src="photos/Vector (1).svg"></button>
 
@@ -39,70 +39,7 @@
         </form>
         <form>
             <div id="divNote">
-                <div class="trashies">
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Уборка по дому</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                    
-                </div>
-                <hr>
-                <div class="trashies">
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Мытье полов</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                </div>
-                <hr>
 
-                <div class="trashies">
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Домашняя работа</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                </div>
-                <hr>
-                <div class="trashies">
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Помощь маме</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                </div>
-                <hr>
-                <div class="trashies">
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Поиграть</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="trashies">
-
-                    <div class="checkboxes">
-                        <input type="checkbox" class="checknote"> <label class="note">Поесть</label>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="editor"></div>
-                        <div class="Trash"></div>
-                    </div>
-                </div>
-                <hr>
             </div>
             </div>
             <div id="emptyState" class="hidden">
@@ -120,7 +57,10 @@
             <button class="Apply" type="button">APPLY</button>
         </div>
         <div class="overflow"></div>
+
+
     </main>
+
 </body>
 <script src="script.js"></script>
 
