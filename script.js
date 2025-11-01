@@ -238,7 +238,6 @@ function filter() {
 
 // Функция для плашки undo
 function timerUndo(taskElement, hrElement) {
-    // Сохраняем задачу и hr для возможного восстановления
     const taskClone = taskElement.cloneNode(true);
     const hrClone = hrElement ? hrElement.cloneNode(true) : null;
     
@@ -258,13 +257,11 @@ function timerUndo(taskElement, hrElement) {
         </div>
     `;
     
-    // Вставляем плашку перед скрытой задачей
     taskElement.parentNode.insertBefore(undoBar, taskElement);
     
     let i = 2;
     const timerElement = undoBar.querySelector('.timer');
     
-    // Запускаем анимацию
     undoBar.querySelector('.loader').style.animation = 'l1 2s infinite linear';
     
     const undoTimeout = setInterval(() => {
