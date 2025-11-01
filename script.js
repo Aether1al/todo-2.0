@@ -272,7 +272,7 @@ function timerUndo(taskElement, hrElement) {
                 }
             }
             undoBar.remove();
-            EmptyState();
+            EmptyState(); 
         }
     }, 650);
     
