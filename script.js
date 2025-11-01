@@ -242,11 +242,10 @@ function timerUndo(taskElement, hrElement) {
     const taskClone = taskElement.cloneNode(true);
     const hrClone = hrElement ? hrElement.cloneNode(true) : null;
     
-    // Скрываем оригинальные элементы
     taskElement.style.display = 'none';
     if (hrElement) hrElement.style.display = 'none';
     
-    // Создаем плашку undo и размещаем ее ПЕРЕД скрытой задачей
+
     const undoBar = document.createElement('div');
     undoBar.className = 'div-undo';
     undoBar.innerHTML = `
