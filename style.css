@@ -41,12 +41,6 @@ form {
     font-size: 16px;
 }
 
-.trashies {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-}
-
 
 .editor {
     cursor: pointer;
@@ -443,23 +437,36 @@ hr.hidden {
     outline: none;
 }
 
+
+/* Ваши существующие стили... */
+
 .div-undo {
     width: 120px;
     height: 40px;
     background-color: #534CC2;
     border: solid 2px #6C63FF;
     border-radius: 4px;
-    display: none;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     transition: 0.5s;
     cursor: pointer;
-    position: absolute;
-    top: 70%;
+    margin: 10px 0;
+    font-family: "Kanit", sans-serif;
+    z-index: 10;
 }
+
 .div-undo:hover {
     background-color: #6C63FF;
     box-shadow: 0 0 4px 0 #6C63FF;
+}
+
+.trashies {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    position: relative;
+    min-height: 50px;
 }
 .loader {
     width: 30px;
@@ -471,6 +478,7 @@ hr.hidden {
     transform: rotate(-45deg) scaleX(-1);
     position: absolute;
 }
+
 .loader-div {
     width: 30px;
     height: 30px;
@@ -478,9 +486,13 @@ hr.hidden {
     justify-content: center;
     align-items: center;
 }
+
 .div-undo p {
     color: white;
 }
+
+
+
 @keyframes l1 {
     100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
