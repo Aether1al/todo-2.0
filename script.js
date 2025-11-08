@@ -5,7 +5,7 @@ document.getElementById('nightbtn').addEventListener('click', function () {
 
 
     if (currentTheme === 'light-theme') {
-        document.body.className = 'dark-theme';
+        document.body.className = 'dark-theme'; 
         themeIcon.src = "photos/Vector (2).svg";
     } else {
         document.body.className = 'light-theme';
