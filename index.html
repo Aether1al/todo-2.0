@@ -22,8 +22,8 @@
             <button id="confirm" type="button"><img src="photos/Vector.svg" alt=""></button>
             <div class="dropdown" id="filterDropdown">
                 <button class="btn" id="filterBtn" type="button">
-                    ALL
-                    <img class="chev" src="photos/chevron-top (1).png" alt="">
+                    <p>All</p>
+                    <p class="chev">ᨆ</p>
                 </button>
                 <ul class="menu" role="listbox" aria-label="Filter">
                     <li data-value="all">All</li>
@@ -37,30 +37,40 @@
 
             </div>
         </form>
+
         <form>
             <div id="divNote">
 
             </div>
-            </div>
             <div id="emptyState" class="hidden">
-                <img src="photos/Detective-check-footprint 1.png" alt="">
+                <img id="empty-state-img" src="photos/Detective-check-footprint 1.png" alt=""
+                    data-light="photos/Detective-check-footprint 1.png"
+                    data-dark="photos/Detective-check-footprint 1 (2).png">
                 <p>Empty...</p>
             </div>
         </form>
-        <button class="PlusWin" onclick="openPopup()"><img src="photos/Vector (4).png" alt=""></button>
-        <div class="popup">
-            <div id="divnote">
-                <p class="newnote">NEW NOTE</p>
-                <input type="text" onclick="" id="inpt" placeholder="Input your note...">
+
+
+        <div id="redactor">
+            <div id="divnoteredactor">
+                <input type="text" id="inptRedactor" placeholder="Edit your DO there">
             </div>
-            <button class="CloseWin" onclick="closePopup()">CANCEL</button>
-            <button class="Apply" type="button">APPLY</button>
+            <div>
+                <button id="cancelEditor">CANCEL</button>
+                <button id="applyEditor">APPLY</button>
+            </div>
         </div>
-        <div class="overflow"></div>
-
-
     </main>
-
+    <button class="PlusWin" onclick="openPopup()"><img src="photos/Vector (4).png" alt=""></button>
+    <div class="popup">
+        <div id="divnote">
+            <p class="newnote">NEW NOTE</p>
+            <input type="text" id="inpt" placeholder="Input your note...">
+        </div>
+        <button class="CloseWin" onclick="closePopup()">CANCEL</button>
+        <button class="Apply" type="button">APPLY</button>
+    </div>
+    <div class="overflow"></div>
 </body>
 <script src="script.js"></script>
 

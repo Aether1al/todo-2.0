@@ -41,12 +41,6 @@ form {
     font-size: 16px;
 }
 
-.trashies {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-}
-
 
 .editor {
     cursor: pointer;
@@ -122,19 +116,24 @@ form {
     right: 40px;
 }
 
-.chev{
+.chev {
+    margin-left: 10px;
     width: 10px;
-    height: 7px;
-
+    height: 30px;
+    transition: all 0.3s;
 }
 
-.btn{
+.dropdown.open .chev {
+    transform: rotate(180deg);
+}
+
+.btn {
     max-width: 150px;
     min-width: 20px;
     width: auto;
     padding: 0 10px 0px 10px;
     height: 38px;
-    background-color:#6C63FF;
+    background-color: #6C63FF;
     color: white;
     border: none;
     display: flex;
@@ -144,11 +143,11 @@ form {
     border-radius: 5px;
 }
 
-.dropdown{
+.dropdown {
     position: relative;
 }
 
-.menu{
+.menu {
     position: absolute;
     top: calc(100%+5px);
     right: 0;
@@ -160,11 +159,11 @@ form {
     z-index: 100;
 }
 
-.dropdown.open .menu{
+.dropdown.open .menu {
     display: block;
 }
 
-.menu li{
+.menu li {
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
@@ -172,12 +171,12 @@ form {
     color: #4d47b9;
 }
 
-li{
+li {
     list-style: none;
 }
 
-.menu li:hover{
-    background-color:#6b63ff6d;
+.menu li:hover {
+    background-color: #6b63ff6d;
 }
 
 .menu li[aria-selected="true"] {
@@ -252,11 +251,11 @@ body.dark-theme,
 }
 
 #divNote {
-    padding-top: 30px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 20px;
+    gap: 0px;
 }
 
 hr {
@@ -268,7 +267,7 @@ hr {
     border-radius: 2px;
     width: 26px;
     height: 26px;
-    font-weight: 500;
+    font-weight: medium;
     font-size: 20px;
     line-height: 100%;
     text-transform: uppercase;
@@ -278,17 +277,16 @@ hr {
 .checknote:checked+.note {
     text-decoration: line-through;
     text-decoration-thickness: 2px;
+    color: #878787 !important;
 }
 
 
 .note {
-    font-weight: bold;
+    font-weight: Medium;
     font-size: 15px;
     line-height: 100%;
     text-transform: uppercase;
     font-family: "Kanit", sans-serif;
-
-
 }
 
 .checkboxes {
@@ -349,7 +347,8 @@ hr.hidden {
     transition: all 0.3s;
 }
 
-.CloseWin:hover{
+.CloseWin:hover,
+#cancelEditor:hover {
     background-color: #4d47b9;
     color: white;
     transform: scale(0.95);
@@ -371,7 +370,8 @@ hr.hidden {
     cursor: pointer;
 }
 
-.Apply:hover{
+.Apply:hover,
+#applyEditor:hover {
     background-color: #4d47b9;
     transform: scale(0.95);
 }
@@ -439,7 +439,8 @@ hr.hidden {
     line-height: 100%;
 }
 
-#inpt:focus {
+#inpt:focus,
+#inptRedactor:focus {
     outline: none;
 }
 
@@ -449,18 +450,34 @@ hr.hidden {
     background-color: #534CC2;
     border: solid 2px #6C63FF;
     border-radius: 4px;
-    display: none;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     transition: 0.5s;
     cursor: pointer;
-    position: absolute;
-    top: 70%;
+    margin: 10px 0;
+    font-family: "Kanit", sans-serif;
+    z-index: 10;
 }
+
 .div-undo:hover {
     background-color: #6C63FF;
     box-shadow: 0 0 4px 0 #6C63FF;
 }
+
+.trashies {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    position: relative;
+    min-height: 50px;
+}
+
+#btns{
+    display: flex;
+    align-items: center;
+}
+
 .loader {
     width: 30px;
     height: 30px;
@@ -471,6 +488,7 @@ hr.hidden {
     transform: rotate(-45deg) scaleX(-1);
     position: absolute;
 }
+
 .loader-div {
     width: 30px;
     height: 30px;
@@ -478,13 +496,100 @@ hr.hidden {
     justify-content: center;
     align-items: center;
 }
+
 .div-undo p {
     color: white;
 }
+
 @keyframes l1 {
-    100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
-    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
-    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
-    0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
+#redactor {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    width: 500px;
+    height: 150px;
+    background-color: white;
+    opacity: 1;
+    z-index: 9999;
+    transition: 1s all;
+    border: 1px solid red;
+}
+
+#cancelEditor {
+    border: 1px solid #6C63FF;
+    border-radius: 5px;
+    width: 110px;
+    height: 38px;
+    font-family: "Kanit", sans-serif;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #6C63FF;
+    position: relative;
+    left: 5%;
+    top: 60%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#applyEditor {
+    border: 1px solid #6C63FF;
+    border-radius: 5px;
+    width: 110px;
+    font-size: 18px;
+    height: 38px;
+    font-family: "Kanit", sans-serif;
+    background-color: #6C63FF;
+    color: white;
+    top: 60%;
+    position: relative;
+    left: 50%;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+#inptRedactor {
+    border: 1px solid #6C63FF;
+    border-radius: 5px;
+    padding-left: 10px;
+    width: 440px;
+    height: 38px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+}
+
+#divnoteredactor {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
