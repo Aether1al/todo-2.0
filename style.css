@@ -444,6 +444,9 @@ hr.hidden {
     outline: none;
 }
 
+
+/* Ваши существующие стили... */
+
 .div-undo {
     width: 120px;
     height: 40px;
@@ -472,12 +475,15 @@ hr.hidden {
     position: relative;
     min-height: 50px;
 }
+<<<<<<< HEAD
 
 #btns{
     display: flex;
     align-items: center;
 }
 
+=======
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
 .loader {
     width: 30px;
     height: 30px;
@@ -501,6 +507,7 @@ hr.hidden {
     color: white;
 }
 
+<<<<<<< HEAD
 @keyframes l1 {
     100% {
         clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
@@ -592,4 +599,14 @@ hr.hidden {
     flex-direction: column;
     align-items: center;
 
+=======
+
+
+@keyframes l1 {
+    100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
+    0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
 }

@@ -2,7 +2,10 @@
 document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
+<<<<<<< HEAD
      const emptyStateImg = document.getElementById('empty-state-img');
+=======
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
 
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
@@ -123,7 +126,11 @@ function EmptyState() {
         return;
     }
 
+<<<<<<< HEAD
     // Проверяем, есть ли видимые задачи
+=======
+    // Проверяем, есть ли видимые задачи (не скрытые)
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     const visibleTasks = Array.from(allTasks).filter(task => 
         task.style.display !== 'none'
     );
@@ -159,7 +166,11 @@ function addEventListenersToNewNote(noteElement) {
     //для редактирования
     const editorBtn = noteElement.querySelector('.editor');
     editorBtn.addEventListener('click', function () {
+<<<<<<< HEAD
         openEditor()
+=======
+        // Код для редактирования можно добавить здесь
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     });
 }
 
@@ -238,6 +249,7 @@ function filter() {
 
 // Функция для плашки undo
 function timerUndo(taskElement, hrElement) {
+<<<<<<< HEAD
     const taskClone = taskElement.cloneNode(true);
     const hrClone = hrElement ? hrElement.cloneNode(true) : null;
     
@@ -245,6 +257,17 @@ function timerUndo(taskElement, hrElement) {
     if (hrElement) hrElement.style.display = 'none';
     
 
+=======
+    // Сохраняем задачу и hr для возможного восстановления
+    const taskClone = taskElement.cloneNode(true);
+    const hrClone = hrElement ? hrElement.cloneNode(true) : null;
+    
+    // Скрываем оригинальные элементы
+    taskElement.style.display = 'none';
+    if (hrElement) hrElement.style.display = 'none';
+    
+    // Создаем плашку undo и размещаем ее ПЕРЕД скрытой задачей
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     const undoBar = document.createElement('div');
     undoBar.className = 'div-undo';
     undoBar.innerHTML = `
@@ -257,11 +280,19 @@ function timerUndo(taskElement, hrElement) {
         </div>
     `;
     
+<<<<<<< HEAD
+=======
+    // Вставляем плашку перед скрытой задачей
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     taskElement.parentNode.insertBefore(undoBar, taskElement);
     
     let i = 2;
     const timerElement = undoBar.querySelector('.timer');
     
+<<<<<<< HEAD
+=======
+    // Запускаем анимацию
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     undoBar.querySelector('.loader').style.animation = 'l1 2s infinite linear';
     
     const undoTimeout = setInterval(() => {
@@ -278,7 +309,11 @@ function timerUndo(taskElement, hrElement) {
                 }
             }
             undoBar.remove();
+<<<<<<< HEAD
             EmptyState(); 
+=======
+            EmptyState();
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
         }
     }, 650);
     
@@ -296,6 +331,7 @@ function timerUndo(taskElement, hrElement) {
 
 document.addEventListener('DOMContentLoaded', function() {
     EmptyState();
+<<<<<<< HEAD
 });
 
 
@@ -309,3 +345,6 @@ function openEditor(){
 
     })
 }
+=======
+});
+>>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
