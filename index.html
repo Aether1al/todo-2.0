@@ -13,7 +13,7 @@
     <title>To do</title>
 </head>
 
-<body>
+<body class="light-theme">
     <main>
         <div id="todoH1">TODO LIST</div>
         <form>
@@ -51,13 +51,15 @@
         </form>
 
 
-        <div id="redactor">
-            <div id="divnoteredactor">
-                <input type="text" id="inptRedactor" placeholder="Edit your DO there">
-            </div>
-            <div>
-                <button id="cancelEditor">CANCEL</button>
-                <button id="applyEditor">APPLY</button>
+        <div id="backgroundRedactor">
+            <div id="redactor">
+                <div id="divnoteredactor">
+                    <input type="text" id="inptRedactor" placeholder="Edit your DO there">
+                </div>
+                <div style="gap: 220px; display: flex;">
+                    <button id="cancelEditor">CANCEL</button>
+                    <button id="applyEditor">APPLY</button>
+                </div>
             </div>
         </div>
     </main>

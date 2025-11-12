@@ -475,15 +475,14 @@ hr.hidden {
     position: relative;
     min-height: 50px;
 }
-<<<<<<< HEAD
 
-#btns{
+
+#btns {
     display: flex;
     align-items: center;
 }
 
-=======
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
+
 .loader {
     width: 30px;
     height: 30px;
@@ -507,7 +506,8 @@ hr.hidden {
     color: white;
 }
 
-<<<<<<< HEAD
+
+
 @keyframes l1 {
     100% {
         clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
@@ -530,83 +530,73 @@ hr.hidden {
     }
 }
 
+
+
 #redactor {
-    display: none;
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 16px;
+    align-items: center;
+    z-index: 1000;
     width: 500px;
-    height: 150px;
+    height: 189px;
     background-color: white;
-    opacity: 1;
-    z-index: 9999;
-    transition: 1s all;
-    border: 1px solid red;
+    border-radius: 16px;
+    justify-content: space-evenly;
 }
 
 #cancelEditor {
-    border: 1px solid #6C63FF;
+    border: 1px solid #534CC2;
     border-radius: 5px;
     width: 110px;
     height: 38px;
-    font-family: "Kanit", sans-serif;
-    background-color: #fff;
     font-weight: 500;
     font-size: 18px;
     line-height: 100%;
     text-transform: uppercase;
-    color: #6C63FF;
-    position: relative;
-    left: 5%;
-    top: 60%;
-    cursor: pointer;
+    font-family: "Kanit", sans-serif;
+    color: #534CC2;
+    background-color: white;
     transition: all 0.3s;
 }
 
 #applyEditor {
-    border: 1px solid #6C63FF;
-    border-radius: 5px;
-    width: 110px;
+    font-weight: 500;
     font-size: 18px;
+    line-height: 100%;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 97px;
     height: 38px;
-    font-family: "Kanit", sans-serif;
-    background-color: #6C63FF;
+    background-color: #534CC2;
     color: white;
-    top: 60%;
-    position: relative;
-    left: 50%;
+    border: none;
+    font-family: "Kanit", sans-serif;
     transition: all 0.3s;
-    cursor: pointer;
+
 }
 
 #inptRedactor {
-    border: 1px solid #6C63FF;
+    border: 1px solid #534CC2;
     border-radius: 5px;
-    padding-left: 10px;
-    width: 440px;
+    padding: 2px 13px;
+    width: 400px;
     height: 38px;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
+    font-family: "Kanit", sans-serif;
 }
 
-#divnoteredactor {
-    padding-top: 25px;
-    display: flex;
-    flex-direction: column;
+#backgroundRedactor {
+    align-self: start;
+    width: 99.89vw;
+    height: 99.77vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(000, 000, 000, 0.5);
+    display: none;
     align-items: center;
+    justify-content: center;
 
-=======
-
-
-@keyframes l1 {
-    100%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
-    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
-    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
-    0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
 }

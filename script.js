@@ -2,10 +2,6 @@
 document.getElementById('nightbtn').addEventListener('click', function () {
     const themeIcon = document.getElementById('theme-icon');
     const currentTheme = document.body.className;
-<<<<<<< HEAD
-     const emptyStateImg = document.getElementById('empty-state-img');
-=======
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
 
     if (currentTheme === 'light-theme') {
         document.body.className = 'dark-theme';
@@ -18,7 +14,60 @@ document.getElementById('nightbtn').addEventListener('click', function () {
     }
 });
 
+let TrueDo = null;
+
+//Открытие редактора
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("editor")) {
+        const DoElem = e.target.closest(".trashies");
+        const TxtElem = DoElem.querySelector(".note");
+
+        TrueDo = TxtElem;
+        document.querySelector("#inptRedactor").value = TxtElem.textContent;
+        document.querySelector("#backgroundRedactor").style.display = "flex";
+        document.querySelector("#inptRedactor").focus();
+    }
+});
+
+//Закрытие редатокра и сохранение
+document.querySelector("#cancelEditor").addEventListener("click", function () {
+    const background = document.querySelector("#backgroundRedactor");
+    document.querySelector("#backgroundRedactor").style.display = "none";
+    TrueDo = null;
+
+})
+
+background = document.querySelector("#backgroundRedactor");
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && background.style.display === 'flex') {
+        background.style.display = "none";
+        TrueDo = null;
+    }
+});
+
+document.querySelector("#inptRedactor").addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        document.querySelector("#applyEditor").click();
+    }
+});
+
+
+
+document.querySelector("#applyEditor").addEventListener("click", function () {
+    if (TrueDo) {
+        const newText = document.querySelector("#inptRedactor").value.trim();
+        if (newText !== "") {
+            TrueDo.textContent = newText;
+        }
+        document.querySelector("#backgroundRedactor").style.display = "none";
+        TrueDo = null;
+    }
+});
+
+
 //поиск
+document.getElementById('poisk').addEventListener('input', searchNotes);
+
 function searchNotes() {
     const search = document.getElementById('poisk').value.toLowerCase();
     const allTasks = document.querySelectorAll('.trashies');
@@ -40,7 +89,6 @@ function searchNotes() {
         }
     });
 
-    //показываем или скрываем  "Empty..."
     const emptyState = document.getElementById('emptyState');
     if (!foundAny && search !== '') {
         emptyState.classList.remove('hidden');
@@ -49,14 +97,7 @@ function searchNotes() {
     }
 }
 
-document.getElementById('confirm').addEventListener('click', searchNotes);
 
-//рабочий Enter для поиска
-document.getElementById('poisk').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        searchNotes();
-    }
-});
 
 //открытие попупа
 function openPopup() {
@@ -104,7 +145,6 @@ function addNewNote() {
     //добавляем новую задачу в начало списка
     const divNote = document.getElementById('divNote');
     divNote.insertAdjacentHTML('afterbegin', newNoteHTML);
-
     addEventListenersToNewNote(divNote.firstElementChild);
 
     // Очищаем поле ввода и закрываем попуп
@@ -126,15 +166,11 @@ function EmptyState() {
         return;
     }
 
-<<<<<<< HEAD
-    // Проверяем, есть ли видимые задачи
-=======
     // Проверяем, есть ли видимые задачи (не скрытые)
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
-    const visibleTasks = Array.from(allTasks).filter(task => 
+    const visibleTasks = Array.from(allTasks).filter(task =>
         task.style.display !== 'none'
     );
-    
+
     if (visibleTasks.length === 0) {
         emptyState.classList.remove('hidden');
     } else {
@@ -161,16 +197,6 @@ function addEventListenersToNewNote(noteElement) {
         const trashies = this.closest('.trashies');
         const nextHr = trashies.nextElementSibling;
         timerUndo(trashies, nextHr);
-    });
-
-    //для редактирования
-    const editorBtn = noteElement.querySelector('.editor');
-    editorBtn.addEventListener('click', function () {
-<<<<<<< HEAD
-        openEditor()
-=======
-        // Код для редактирования можно добавить здесь
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     });
 }
 
@@ -203,7 +229,7 @@ filterBtn.onclick = function () {
     dropdown.classList.toggle("open");
 };
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove("open");
     }
@@ -249,25 +275,15 @@ function filter() {
 
 // Функция для плашки undo
 function timerUndo(taskElement, hrElement) {
-<<<<<<< HEAD
-    const taskClone = taskElement.cloneNode(true);
-    const hrClone = hrElement ? hrElement.cloneNode(true) : null;
-    
-    taskElement.style.display = 'none';
-    if (hrElement) hrElement.style.display = 'none';
-    
-
-=======
     // Сохраняем задачу и hr для возможного восстановления
     const taskClone = taskElement.cloneNode(true);
     const hrClone = hrElement ? hrElement.cloneNode(true) : null;
-    
+
     // Скрываем оригинальные элементы
     taskElement.style.display = 'none';
     if (hrElement) hrElement.style.display = 'none';
-    
+
     // Создаем плашку undo и размещаем ее ПЕРЕД скрытой задачей
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     const undoBar = document.createElement('div');
     undoBar.className = 'div-undo';
     undoBar.innerHTML = `
@@ -279,22 +295,16 @@ function timerUndo(taskElement, hrElement) {
             <p>UNDO <img src="photos/Vector (3).svg"></p>
         </div>
     `;
-    
-<<<<<<< HEAD
-=======
+
     // Вставляем плашку перед скрытой задачей
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     taskElement.parentNode.insertBefore(undoBar, taskElement);
-    
+
     let i = 2;
     const timerElement = undoBar.querySelector('.timer');
-    
-<<<<<<< HEAD
-=======
+
     // Запускаем анимацию
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
     undoBar.querySelector('.loader').style.animation = 'l1 2s infinite linear';
-    
+
     const undoTimeout = setInterval(() => {
         i--;
         timerElement.textContent = i;
@@ -309,16 +319,12 @@ function timerUndo(taskElement, hrElement) {
                 }
             }
             undoBar.remove();
-<<<<<<< HEAD
-            EmptyState(); 
-=======
             EmptyState();
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
         }
     }, 650);
-    
+
     // Добавляем обработчик для восстановления
-    undoBar.addEventListener('click', function() {
+    undoBar.addEventListener('click', function () {
         clearInterval(undoTimeout);
 
         taskElement.style.display = 'flex';
@@ -329,22 +335,7 @@ function timerUndo(taskElement, hrElement) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     EmptyState();
-<<<<<<< HEAD
 });
 
-
-function openEditor(){
-    const redactor = document.querySelector("#redactor");
-    const editor = document.querySelector(".editor");
-
-    editor.addEventListener("click", function(){
-
-        redactor.style.display = "flex";
-
-    })
-}
-=======
-});
->>>>>>> 25036a4f2d0f4235bd56f9f7ca82fef3798017ad
