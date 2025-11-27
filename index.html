@@ -10,30 +10,30 @@
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>To do</title>
+    <title>МОИ ЗАМЕТКИ</title>
 </head>
 
 <body class="light-theme">
     <main>
-        <div id="todoH1">TODO LIST</div>
+        <div id="todoH1"    class="lng"  data-key="todoH1">МОИ ЗАМЕТКИ</div>
         <form>
-            <input type="text" id="poisk" placeholder="Search note...">
+            <input type="text" id="poisk" class="lng"  data-key="search" placeholder="Искать заметку...">
 
-            <button id="confirm" type="button"><img src="photos/Vector.svg" alt=""></button>
+            <button id="confirm" class="lng"  type="button"><img src="photos/Vector.svg" alt=""></button>
             <div class="dropdown" id="filterDropdown">
-                <button class="btn" id="filterBtn" type="button">
-                    <p>All</p>
-                    <p class="chev">ᨆ</p>
+                <button class="btn lng" id="filterBtn" type="button">
+                    <p class="All lng" data-key="All">Все</p>
+                    <p class="chev lng" data-key="chev">ᨆ</p>
                 </button>
-                <ul class="menu" role="listbox" aria-label="Filter">
-                    <li data-value="all">All</li>
-                    <li data-value="active">Complete</li>
-                    <li data-value="copleted">Incomplete</li>
+                <ul class="menu lng" role="listbox"  aria-label="Filter">
+                    <li data-value="all" class="All lng" data-key="All">Все</li>
+                    <li data-value="active" class="Complete lng"  data-key="Complete">Выполненные</li>
+                    <li data-value="copleted" class="Incomplete lng"  data-key="Incomplete">В процессе</li>
                 </ul>
             </div>
 
             <div id="night">
-                <button type="button" id="nightbtn"><img id="theme-icon" src="photos/Vector (1).svg"></button>
+                <button type="button" id="nightbtn" ><img id="theme-icon" src="photos/Vector (1).svg"></button>
 
             </div>
         </form>
@@ -46,7 +46,7 @@
                 <img id="empty-state-img" src="photos/Detective-check-footprint 1.png" alt=""
                     data-light="photos/Detective-check-footprint 1.png"
                     data-dark="photos/Detective-check-footprint 1 (2).png">
-                <p>Empty...</p>
+                <p class="Empty lng" data-key="Empty">Пусто...</p>
             </div>
         </form>
 
@@ -54,11 +54,11 @@
         <div id="backgroundRedactor">
             <div id="redactor">
                 <div id="divnoteredactor">
-                    <input type="text" id="inptRedactor" placeholder="Edit your DO there">
+                    <input type="text" id="inptRedactor" class="placeholderEdit" data-key="placeholderEdit" placeholder="Edit your DO there">
                 </div>
                 <div style="gap: 220px; display: flex;">
-                    <button id="cancelEditor">CANCEL</button>
-                    <button id="applyEditor">APPLY</button>
+                    <button id="cancelEditor" data-key="cancelEditor">ОТМЕНА</button>
+                    <button id="applyEditor" data-key="applyEditor">ОК</button>
                 </div>
             </div>
         </div>
@@ -66,13 +66,17 @@
     <button class="PlusWin" onclick="openPopup()"><img src="photos/Vector (4).png" alt=""></button>
     <div class="popup">
         <div id="divnote">
-            <p class="newnote">NEW NOTE</p>
-            <input type="text" id="inpt" placeholder="Input your note...">
+            <p class="newnote lng" data-key="newnote">НОВАЯ ЗАМЕТКА</p>
+            <input type="text" id="inpt" class="placeholderNew lng" data-key="placeholderNew" placeholder="новая задача...">
         </div>
-        <button class="CloseWin" onclick="closePopup()">CANCEL</button>
-        <button class="Apply" type="button">APPLY</button>
+        <button class="CloseWin lng" data-key="CloseWin" onclick="closePopup()">ОТМЕНА</button>
+        <button class="Apply lng" data-key="Apply" type="button">ОК</button>
     </div>
     <div class="overflow"></div>
+    <select id="langSwitcher">
+        <option value="ru">Ru</option>
+        <option value="en">Eng</option>
+    </select>
 </body>
 <script src="script.js"></script>
 

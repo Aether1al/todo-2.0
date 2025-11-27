@@ -275,9 +275,6 @@ function filter() {
 
 // Функция для плашки undo
 function timerUndo(taskElement, hrElement) {
-    // Сохраняем задачу и hr для возможного восстановления
-    const taskClone = taskElement.cloneNode(true);
-    const hrClone = hrElement ? hrElement.cloneNode(true) : null;
 
     // Скрываем оригинальные элементы
     taskElement.style.display = 'none';
@@ -287,13 +284,16 @@ function timerUndo(taskElement, hrElement) {
     const undoBar = document.createElement('div');
     undoBar.className = 'div-undo';
     undoBar.innerHTML = `
-        <div class="loader-div">
+    <div class="mainDivUndo">
+    <div class="loader-div">
             <div class="loader"></div>
             <p class="timer">2</p>
         </div>
-        <div>
-            <p>UNDO <img src="photos/Vector (3).svg"></p>
+        <div сlass="UNDODiv" style="display: flex">
+            <p сlass="lng" data-key="UNDODiv"> UNDO</p> 
+            <img class="imgUndo" src="photos/Vector (3).svg">
         </div>
+    </div>
     `;
 
     // Вставляем плашку перед скрытой задачей
@@ -339,3 +339,101 @@ document.addEventListener('DOMContentLoaded', function () {
     EmptyState();
 });
 
+const languageDataArr = {
+    "todoH1": {
+        "en": "TODOLIST",
+        "ru": "Мои задачи",
+    },
+
+    "search": {
+        "en": "Search note...",
+        "ru": "Искать заметку...",
+    },
+
+    "Complete": {
+        "en": "Complete",
+        "ru": "Выполнено",
+    },
+
+    "All": {
+        "en": "All",
+        "ru": "Все",
+    },
+
+    "Incomplete": {
+        "en": "Incomplete",
+        "ru": "В процессе",
+    },
+
+    "Empty": {
+        "en": "Empty...",
+        "ru": "Пусто...",
+    },
+
+    "newnote": {
+        "en": "NEW NOTE",
+        "ru": "Новая заметка",
+    },
+
+    "placeholderNew": {
+        "en": "Input your note...",
+        "ru": "Название новой задачи..",
+    },
+
+    "CancelEditor": {
+        "en": "CANCEL",
+        "ru": "ОТМЕНА",
+    },
+
+    "applyEditor": {
+        "en": "APPLY",
+        "ru": "ОК",
+    },
+
+    "CloseWin": {
+        "en": "CANCEL",
+        "ru": "ОТМЕНА",
+    },
+
+    "Apply": {
+        "en": "APPLY",
+        "ru": "ОК",
+    },
+
+    "placeholderEdit": {
+        "en": "Edit your DO there...",
+        "ru": "Измените название здесь...",
+    },
+
+    "UNDODiv": {
+        "en": "UNDO",
+        "ru": "ОТМЕНА",
+    }
+
+};
+
+const langSwitcher = document.querySelector("#langSwitcher");
+langSwitcher.addEventListener("change", ChangeLanguage);
+let elements = document.getElementsByClassName("lng");
+
+function ChangeLanguage() {
+    let currentLang = langSwitcher.value;
+    let elements = document.getElementsByClassName("lng");
+    // console.log(elements);
+    
+    for (let el of elements) {
+        const key = el.dataset.key;
+        console.log(el,key);
+        
+        if (languageDataArr[key] && languageDataArr[key][currentLang]) {
+                   
+            if (el.placeholder !== undefined) {
+                el.placeholder = languageDataArr[key][currentLang];
+            } else {
+                el.textContent = languageDataArr[key][currentLang];
+            }
+        }
+    }
+}
+
+ChangeLanguage();

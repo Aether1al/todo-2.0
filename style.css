@@ -20,7 +20,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Kanit", sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-style: normal;
     font-size: 26px;
 }
@@ -99,7 +99,7 @@ form {
 
 #emptyState p {
     font-family: "Kanit", sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 20px;
     line-height: 100%;
     text-transform: capitalize;
@@ -243,11 +243,22 @@ body.dark-theme,
         transition: 0.3s ease;
     }
 
+    button#cancelEditor {
+        color: white;
+        background-color: rgb(49, 49, 49);
+        transition: 0.3s ease;
+    }
+
     button.CloseWin {
         color: white;
         background-color: rgb(49, 49, 49);
         transition: 0.3s ease;
     }
+}
+
+body.dark-theme #redactor {
+    background-color: rgb(49, 49, 49);
+    color: white;
 }
 
 #divNote {
@@ -267,7 +278,7 @@ hr {
     border-radius: 2px;
     width: 26px;
     height: 26px;
-    font-weight: medium;
+    font-weight: 700;
     font-size: 20px;
     line-height: 100%;
     text-transform: uppercase;
@@ -282,7 +293,7 @@ hr {
 
 
 .note {
-    font-weight: Medium;
+    font-weight: 700;
     font-size: 15px;
     line-height: 100%;
     text-transform: uppercase;
@@ -335,7 +346,7 @@ hr.hidden {
     height: 38px;
     font-family: "Kanit", sans-serif;
     background-color: #fff;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 100%;
     text-transform: uppercase;
@@ -384,8 +395,8 @@ hr.hidden {
     height: 50px;
     border-radius: 50%;
     box-shadow: none;
-    position: absolute;
-    top: 90%;
+    position: fixed;
+    bottom: 10%;
     left: 72%;
     display: flex;
     align-items: center;
@@ -401,7 +412,7 @@ hr.hidden {
 }
 
 .newnote {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 24px;
     line-height: 100%;
     text-transform: uppercase;
@@ -434,7 +445,7 @@ hr.hidden {
     padding-left: 10px;
     width: 440px;
     height: 38px;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 16px;
     line-height: 100%;
 }
@@ -448,7 +459,7 @@ hr.hidden {
 /* Ваши существующие стили... */
 
 .div-undo {
-    width: 120px;
+    width: 140px;
     height: 40px;
     background-color: #534CC2;
     border: solid 2px #6C63FF;
@@ -458,7 +469,7 @@ hr.hidden {
     align-items: center;
     transition: 0.5s;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 5px 0;
     font-family: "Kanit", sans-serif;
     z-index: 10;
 }
@@ -466,6 +477,18 @@ hr.hidden {
 .div-undo:hover {
     background-color: #6C63FF;
     box-shadow: 0 0 4px 0 #6C63FF;
+}
+
+.mainDivUndo{
+    display: flex;
+    gap: 10px;
+}
+
+
+.imgUndo{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
 }
 
 .trashies {
@@ -493,6 +516,8 @@ hr.hidden {
     transform: rotate(-45deg) scaleX(-1);
     position: absolute;
 }
+
+
 
 .loader-div {
     width: 30px;
@@ -549,7 +574,7 @@ hr.hidden {
     border-radius: 5px;
     width: 110px;
     height: 38px;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 100%;
     text-transform: uppercase;
@@ -560,7 +585,7 @@ hr.hidden {
 }
 
 #applyEditor {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 100%;
     text-transform: uppercase;
@@ -581,7 +606,7 @@ hr.hidden {
     padding: 2px 13px;
     width: 400px;
     height: 38px;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 16px;
     line-height: 100%;
     font-family: "Kanit", sans-serif;
@@ -599,4 +624,16 @@ hr.hidden {
     align-items: center;
     justify-content: center;
 
+}
+
+#langSwitcher{
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    color: white;
+    background-color:#6C63FF;
+    border: none;
+    position: sticky;
+    left: 95%;
+    bottom: 95%;
 }
