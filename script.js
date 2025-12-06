@@ -127,6 +127,18 @@ function addNewNote() {
         return;
     }
 
+    //добавление новой задачи в файл tasks.txt
+    let fd = new FormData();
+    fd.append("task_text", noteText);
+    fetch("createTask.php", {
+        method: "post",
+        body: fd
+    })
+        .then(response => response.text())
+        .then((response) => {
+            console.log(response);
+        });
+
     //структура html для новой задачи
     const newNoteHTML = `
         <div class="trashies">
@@ -420,13 +432,13 @@ function ChangeLanguage() {
     let currentLang = langSwitcher.value;
     let elements = document.getElementsByClassName("lng");
     // console.log(elements);
-    
+
     for (let el of elements) {
         const key = el.dataset.key;
-        console.log(el,key);
-        
+        console.log(el, key);
+
         if (languageDataArr[key] && languageDataArr[key][currentLang]) {
-                   
+
             if (el.placeholder !== undefined) {
                 el.placeholder = languageDataArr[key][currentLang];
             } else {
@@ -437,3 +449,54 @@ function ChangeLanguage() {
 }
 
 ChangeLanguage();
+
+// открытие новой задачи на сайте из tasks.txt
+document.addEventListener("DOMContentLoaded", () => {
+fetch("getTask.php")
+        .then(data=>data.json())
+    .then((data)=>{
+        iteratingOverArray(data)
+    })
+            
+});
+
+//перебор данных файла
+function iteratingOverArray(arr){
+    console.log(arr);
+    
+    for (let i = 0; i < arr.length; i++) {
+        AddLoadedNote(arr[i])
+    }
+}
+
+//показ на сайте задачи с файла
+function AddLoadedNote(temp) {
+    const input = document.getElementById('inpt');
+
+    //структура html для новой задачи
+    const newNoteHTML = `
+        <div class="trashies">
+            <div class="checkboxes">
+                <input type="checkbox" class="checknote"> 
+                <label class="note">${temp}</label>
+            </div>
+            <div Id="btns">
+                <div class="editor"></div>
+                <div class="Trash"></div>
+            </div>
+        </div>
+        <hr>
+    `;
+
+    //добавляем новую задачу в начало списка
+    const divNote = document.getElementById('divNote');
+    divNote.insertAdjacentHTML('afterbegin', newNoteHTML);
+    addEventListenersToNewNote(divNote.firstElementChild);
+
+    // Очищаем поле ввода и закрываем попуп
+    input.value = '';
+    closePopup();
+
+    //если создается новая задача скрываем "empty..."
+    document.getElementById('emptyState').classList.add('hidden');
+}

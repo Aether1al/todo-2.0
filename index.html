@@ -67,7 +67,8 @@
     <div class="popup">
         <div id="divnote">
             <p class="newnote lng" data-key="newnote">НОВАЯ ЗАМЕТКА</p>
-            <input type="text" id="inpt" class="placeholderNew lng" data-key="placeholderNew" placeholder="новая задача...">
+            <form action="script.php" method="post">
+            <input type="text" id="inpt" class="placeholderNew lng" data-key="placeholderNew" placeholder="новая задача..."></form>
         </div>
         <button class="CloseWin lng" data-key="CloseWin" onclick="closePopup()">ОТМЕНА</button>
         <button class="Apply lng" data-key="Apply" type="button">ОК</button>
@@ -77,6 +78,7 @@
         <option value="ru">Ru</option>
         <option value="en">Eng</option>
     </select>
+    
 </body>
 <script src="script.js"></script>
 

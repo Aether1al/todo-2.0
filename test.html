@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="taskText">
+    <button id="btn">Click me!</button>
+    <div class="container">
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("server/getTask.php")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (tasks) {
+                    document.getElementsByClassName("container")[0].innerHTML = tasks;
+                });
+        });
+
+        document.getElementById("btn").addEventListener("click", () => {
+            fetch("server/getTask.php")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (tasks) {
+                    document.getElementsByClassName("container")[0].innerHTML = tasks;
+                });
+        });
+
+        document.getElementById("btn").addEventListener("click", function () {
+            let task_text_v = document.getElementById("taskText").value;
+            let fd = new FormData();
+            fd.append("task_text", task_text_v);
+
+            fetch("server/createTask.php", {
+                method: "post",
+                body: fd
+            })
+                .then(response => response.text())
+                .then((response) => {
+                    console.log(response);
+                });
+        });
+    </script>
+</body>
+
+</html>
